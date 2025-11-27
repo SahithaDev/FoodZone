@@ -1,0 +1,37 @@
+{
+  "name": "foodapp",
+  "version": "1.0.0",
+  "description": "This is the food application.",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sahitha0203/Food-Application.git"
+  },
+  "keywords": [
+    "food",
+    "delivery",
+    "ratings",
+    "react"
+  ],
+  "author": "Sahitha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sahitha0203/Food-Application/issues"
+  },
+  "homepage": "https://github.com/Sahitha0203/Food-Application#readme",
+  "devDependencies": {
+    "@babel/core": "^7.28.4",
+    "@babel/preset-env": "^7.28.3",
+    "@babel/preset-react": "^7.27.1",
+    "autoprefixer": "^10.4.21",
+    "parcel": "^2.16.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17"
+  },
+  "dependencies": {
+    "react-router": "6.14",
+    "react-router-dom": "6.14"
+  }
+}

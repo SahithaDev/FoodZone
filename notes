@@ -1,0 +1,187 @@
+ISSUES:
+
+-There was a problem in HMR of parcel , so I used the command "
+
+-Then it worked well.
+Remove-Item -Recurse -Force .parcel-cache , dist
+CSS NOTES:
+
+-Flex: becuz I wanted it to be side by side like in the header block.
+-I wanted space between both the sections , so i have used (justify-content:space-between).
+-I wanted to minimize the size of logo , so I had mentioned logo class with img section beside.
+-To remove the bulletins , choose list-style-type:none.
+
+--> It allows you to easily:
+
+--> Align items horizontally or vertically
+
+-->Control spacing and wrapping between elements
+
+-->Make items shrink, grow, or stay fixed based on the container
+
+-->Build responsive layouts (works great on all screen sizes)
+
+## PROPS:
+
+-I created one resto-card , now i want resto-cards that doesnt mean i have to print that resto card everytime..
+-I can do this by creating props.
+-Props are like arguments given in a function , but in the case of react it is component.
+-It is a JS object , so it has to be given as an argument in the component.
+
+## CONFIG DRIVEN UI:
+
+-UI is drivern by config.
+-For example, data can be different from place to place in a particular website.
+-If you want to see the backend data of any anything , inspect > network> fetch/XXR
+-Find the rest list API.
+
+## OPTIMIZE THE APP:
+
+-Use map function instead of loops.
+-When you are using map , make sure you mention key , which is very importnat.
+-Giving unique id is not acceptable.
+
+## CLEARING UP THE FOLDER:
+
+-I created an other folder "src" adn moved app.js into it and made changes in script line of html
+-Create component folder in src and many other files can be added , to create sepeatee folder for each component.
+-When a heading file is created in src , when we do that , there is no heading in app.js , so it throws an error , to correct it we have to export and then import it.
+-export default Heading; (use this in heading file only)
+-import it in app.js, "import Header from "./components/Heading.js";"
+-Never put your hard coded in components folder(industrial advice).
+-All the images link , url can be added into seperate file called utils.
+-export default allows you to write only once in the file , to do multiple exports used named exports.
+-To import named ones use { } these brackets.
+
+## MAKING MY APP DYNAMIC:
+
+FIRST FEATURE : ADDING A BUTTON THAT FILTER TOP RESTAURANTS(ABOVE 4.5 RATING)
+-Firstly our application has normal js variables , if I have to make it dynamic , I have to create state variables , which can be made by using hooks like useState() , useEffect().
+-First I have to import these.
+-useState needs two variables one is the normal list variable , the other one is to update the list.
+
+## Virtual DOM
+
+- A JS-based copy of the real DOM
+
+React uses it To perform efficient UI updates
+
+## React Fiber
+
+- The engine that makes rendering smarter, faster, and interruptible
+
+## Reconciliation Algorithm
+
+- Compares old vs new VDOM and updates real DOM efficiently
+
+## SWIGGY API CALL:
+
+-Used fetch() to fetch the rest list.
+-async , await are used instead of promise calling.
+-Then in the fetch function , I have given API link , this throws CORS error , which can be rectified by installing CORS extension.
+
+## SHIMMER UI:
+
+-Used to dispaly the fake cards before actually loading the data.(used for better UI experience).
+
+## LOGIN BUTTON:
+
+-By using useState() hook.
+-React re renders everything , like if I want to change login to logout , it re renders full header page.
+
+## SEARCH BUTTON:
+
+-Search box and a button.
+-Now, I have to create a state useState() hook.
+-When the user types something, I need to remember that value, and maybe do something with it (like filter data) when they click Search , that is why create a hook.
+-Whenever state variables get updated , react triggers a reconcilliation cycle(re-renders the component)
+-so we create a useState hook for searcTect.
+-Then we create an other hook for , restaurants list as we are using the listOfRestaurants , when we press the search button , the list sorts out with the required restaurant list , now when we have to search for an other item , we will be searching from the previously modified list , so to avoid that it's better to search from the whole list , which can be stored in the new variable.
+
+## useEffect(): (call back functions , dependencies)
+
+-It tells React when to re-run the effect.(Usage of dependencies)
+-if there is no dependency component , it gets called on every render.
+-if dependency array is empty=[] useEffect is called on intital render(just once).
+-If we put something is given in dependency, every time that changes , useeEffect is called.
+-useEffect(callback, [dependencies])
+
+## HOOKS:
+
+-never use in conditional statements.
+-anad write it in the functional component like body , header , dont put it inside.
+-Keep it on the top.
+-useState = stores and updates data inside your component.
+-useEffect = reacts to changes (like “when the data changes, run this code”).
+-const [state, setState] = useState(initialValue);
+
+## ROUTER:
+
+-If you build an app with multiple “pages” (Home, About, Cart, etc.), React doesn’t know how to move between them.
+-It lets you build Single Page Applications (SPAs) where the URL changes (/home, /about, /cart), but the page doesn’t reload — React just swaps components.
+
+-React Router is much more than just creating multiple images or basic links—it is a powerful library for managing client-side routing in React applications, enabling single-page applications (SPAs) to behave like multi-page apps without full page reloads.
+
+- Whenever u want to create a router , first thing is to build react configuration.
+  -Configuration means what will happen if something is called , what will happen at the route.
+  -First import createBrowserRouter from react-router-dom.
+  -Basically createBrowserRouter is used to create router ocnfiguration which includes path and the element to display when that path is chosen.(used to create paths)
+  -Now , to reflect it on our app , we need to render it using RouterProvider.
+  -First when we had to render , AppLayout component , we did it directly using root.render().
+
+## rafce:
+
+-It creates a boiler plate of the component.
+
+## Error page:
+
+-If any wrong url is taken , error page gets reloaded.
+
+## Children routes:
+
+-These are used to load the put the header page same and load the rest.
+-Outlet is used to "use children routes in the application".
+
+## Link component:
+
+-If i click about us , home ....then it opens a new fresh page everytime as we are using , href link (anchor tag), which is a bad method.
+-Instead usage of this link component makes it easy by not loading the whole page , which makes our application faster.
+-works like anchor tag.
+-Firstly , import link tag from react-dom.
+-And then use it in the tags , using link component.
+-Becuz of this , react applications are called as single page applications.
+
+## Types of routing:
+
+1. Client side routing
+2. Server side routing
+   -We can say that SPA's are possible by using client side routing.
+
+## Graph QL:
+
+-GraphQL is a query language for APIs.
+-GraphQL exposes a single endpoint where clients can request exactly the data they need and nothing more.
+
+## useParams:
+
+-useParams is a React Router hook used to access the dynamic parameters from the current URL in a component.
+
+## Class based components:
+
+-Notes
+-Never update state variables directly.
+
+## API Calls using class based components:
+
+-Notes
+-refer to the life cycle diagram
+
+## Tailwind CSS:
+
+INSTALL PACKAGES
+
+## Higher order components:
+
+-Takes a component , and returns a component.
+-It enhanaces or modifies the component and returns it.
+-For example , if I consider swiggy it has few promoted restaurants, so now to get that , ill give input as restaurant card and give back the promoted restaurant card.
