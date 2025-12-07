@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../../utils/useOnlineStatus";
+import Sorting from "./Sorting";
 
 const Body = () => {
   const [listOfRestaurants, setlistOfRestaurants] = useState([]);
@@ -67,7 +68,7 @@ const Body = () => {
               setfilteredRestaurant(filteredRestaurant);
             }}
           >
-            Search
+            Searchpjh
           </button>
         </div>
         <div>
@@ -81,15 +82,19 @@ const Body = () => {
               setfilteredRestaurant(filteredList);
             }}
           >
-            Top rated
+            Top ratedsss
           </button>
         </div>
         <div>
-          <button>
-            onclick={()=>{
-              const
-
+          <button
+            className="p-2 m-2 bg-yellow-100 flex w-auto rounded-lg "
+            onClick={() => {
+              const SortByRating = Sorting(listOfRestaurants);
+              console.log(SortByRating);
+              setfilteredRestaurant(SortByRating);
             }}
+          >
+            Sort by Rating
           </button>
         </div>
       </div>

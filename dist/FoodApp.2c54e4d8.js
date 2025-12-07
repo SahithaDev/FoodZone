@@ -207,11 +207,11 @@
       });
     }
   }
-})({"frqA7":[function(require,module,exports,__globalThis) {
+})({"ZraoU":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
-var HMR_SERVER_PORT = 1234;
+var HMR_SERVER_PORT = 6000;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "439701173a9199ea";
 var HMR_USE_SSE = false;
@@ -16086,7 +16086,7 @@ parcelHelpers.export(exports, "LOGO_URL", ()=>LOGO_URL);
 parcelHelpers.export(exports, "MENU_URL", ()=>MENU_URL);
 const CDN_URL = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 const LOGO_URL = "https://i.pinimg.com/736x/12/18/ff/1218ffdf29f742310ce72880f46c1d4f.jpg";
-const MENU_URL = "https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=17.406498&lng=78.47724389999999&restaurantId=";
+const MENU_URL = "https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=17.406498&lng=78.47724389999999&carousel=true&third_party_vendor=1";
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jnFvT":[function(require,module,exports,__globalThis) {
 exports.interopDefault = function(a) {
@@ -24494,6 +24494,8 @@ var _shimmerDefault = parcelHelpers.interopDefault(_shimmer);
 var _reactRouterDom = require("react-router-dom");
 var _useOnlineStatus = require("../../utils/useOnlineStatus");
 var _useOnlineStatusDefault = parcelHelpers.interopDefault(_useOnlineStatus);
+var _sorting = require("./Sorting");
+var _sortingDefault = parcelHelpers.interopDefault(_sorting);
 var _jsxRuntime = require("react/jsx-runtime");
 const Body = ()=>{
     const [listOfRestaurants, setlistOfRestaurants] = (0, _react.useState)([]);
@@ -24545,7 +24547,7 @@ const Body = ()=>{
                                     const filteredRestaurant = listOfRestaurants.filter((resData)=>resData.info.name.toLowerCase().includes(searchText.toLowerCase()));
                                     setfilteredRestaurant(filteredRestaurant);
                                 },
-                                children: "Search"
+                                children: "Searchpjh"
                             })
                         ]
                     }),
@@ -24557,7 +24559,18 @@ const Body = ()=>{
                                 console.log(filteredList);
                                 setfilteredRestaurant(filteredList);
                             },
-                            children: "Top rated"
+                            children: "Top ratedsss"
+                        })
+                    }),
+                    /*#__PURE__*/ (0, _jsxRuntime.jsx)("div", {
+                        children: /*#__PURE__*/ (0, _jsxRuntime.jsx)("button", {
+                            className: "p-2 m-2 bg-yellow-100 flex w-auto rounded-lg ",
+                            onClick: ()=>{
+                                const SortByRating = (0, _sortingDefault.default)(listOfRestaurants);
+                                console.log(SortByRating);
+                                setfilteredRestaurant(SortByRating);
+                            },
+                            children: "Sort by Rating"
                         })
                     })
                 ]
@@ -24583,7 +24596,7 @@ exports.default = Body;
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"./RestoCard":"bfWTJ","../../utils/mockData":"grSw8","react":"jMk1U","./Shimmer":"fSZbx","react-router-dom":"61z4w","../../utils/useOnlineStatus":"aFz4T","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"bfWTJ":[function(require,module,exports,__globalThis) {
+},{"./RestoCard":"bfWTJ","../../utils/mockData":"grSw8","react":"jMk1U","./Shimmer":"fSZbx","react-router-dom":"61z4w","../../utils/useOnlineStatus":"aFz4T","./Sorting":"2TGgc","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"bfWTJ":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$ceae = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 $parcel$ReactRefreshHelpers$ceae.init();
 var prevRefreshReg = globalThis.$RefreshReg$;
@@ -26263,7 +26276,28 @@ exports.default = Shimmer;
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"bv2mH":[function(require,module,exports,__globalThis) {
+},{"react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"2TGgc":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _constant = require("../../utils/constant");
+const Sorting = (arr)=>{
+    if (arr.length <= 1) return arr;
+    let mid = Math.floor(arr.length / 2);
+    let left = Sorting(arr.slice(0, mid));
+    let right = Sorting(arr.slice(mid));
+    return merge(left, right);
+};
+const merge = (left, right)=>{
+    const result = [];
+    let i = 0;
+    let j = 0;
+    while(i < left.length && j < right.length)if (left[i].info.avgRating > right[j].info.avgRating) result.push(left[i]);
+    else result.push(right[i]);
+    return result.concat(left.slice(i)).concat(right.slice(j));
+};
+exports.default = Sorting;
+
+},{"../../utils/constant":"6ANQY","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"bv2mH":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$f021 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 $parcel$ReactRefreshHelpers$f021.init();
 var prevRefreshReg = globalThis.$RefreshReg$;
@@ -26721,6 +26755,6 @@ exports.default = MenuItem;
 },{"../../utils/constant":"6ANQY","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"baeVm":[function(require,module,exports,__globalThis) {
 module.exports = import("./Grocery.390591cb.js").then(()=>module.bundle.root('cz4SJ'));
 
-},{"cz4SJ":"cz4SJ"}]},["frqA7","hh6uc"], "hh6uc", "parcelRequire70d3", {}, null, null, "http://localhost:1234")
+},{"cz4SJ":"cz4SJ"}]},["ZraoU","hh6uc"], "hh6uc", "parcelRequire70d3", {}, null, null, "http://localhost:6000")
 
 //# sourceMappingURL=FoodApp.2c54e4d8.js.map
